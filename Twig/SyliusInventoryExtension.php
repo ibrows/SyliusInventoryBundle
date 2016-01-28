@@ -13,15 +13,13 @@ namespace Sylius\Bundle\InventoryBundle\Twig;
 
 use Sylius\Bundle\InventoryBundle\Checker\AvailabilityCheckerInterface;
 use Sylius\Bundle\InventoryBundle\Model\StockableInterface;
-use Twig_Extension;
-use Twig_Function_Method;
 
 /**
  * Inventory management helper methods.
  *
  * @author Paweł Jędrzejewski <pjedrzejewski@diweb.pl>
  */
-class SyliusInventoryExtension extends Twig_Extension
+class SyliusInventoryExtension extends \Twig_Extension
 {
     /**
      * Availability checker.
@@ -46,8 +44,8 @@ class SyliusInventoryExtension extends Twig_Extension
     public function getFunctions()
     {
         return array(
-            'sylius_inventory_is_available' => new Twig_Function_Method($this, 'isStockAvailable'),
-            'sylius_inventory_is_sufficient' => new Twig_Function_Method($this, 'isStockSufficient'),
+            new \Twig_SimpleFunction('isStockAvailable', array($this, 'isStockAvailable')),
+            new \Twig_SimpleFunction('isStockSufficient', array($this, 'isStockSufficient')),
         );
     }
 
