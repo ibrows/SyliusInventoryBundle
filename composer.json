@@ -20,7 +20,7 @@
     "require": {
         "php": ">=5.3.2",
 
-        "symfony/framework-bundle": "~2.1"
+        "symfony/framework-bundle": "*"
     },
     "require-dev": {
         "phpspec/phpspec2": "dev-develop",
