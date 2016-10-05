@@ -21,16 +21,16 @@
         <parameter key="sylius.repository.stockable.class">Sylius\Bundle\ResourceBundle\Doctrine\ORM\EntityRepository</parameter>
     </parameters>
 
+
     <services>
         <service id="sylius.manager.inventory_unit" alias="doctrine.orm.entity_manager" />
         <service id="sylius.repository.inventory_unit" class="%sylius.repository.inventory_unit.class%">
             <argument type="service" id="sylius.manager.inventory_unit" />
             <argument type="service">
                 <service
-                    factory-service="sylius.manager.inventory_unit"
-                    factory-method="getClassMetadata"
                     class="Doctrine\ORM\Mapping\ClassMetadata"
                 >
+                    <factory service="sylius.manager.inventory_unit" method="getClassMetadata"/>
                     <argument>%sylius.model.inventory_unit.class%</argument>
                 </service>
             </argument>
@@ -41,10 +41,9 @@
             <argument type="service" id="sylius.manager.stockable" />
             <argument type="service">
                 <service
-                    factory-service="sylius.manager.stockable"
-                    factory-method="getClassMetadata"
                     class="Doctrine\ORM\Mapping\ClassMetadata"
                 >
+                    <factory service="sylius.manager.stockable" method="getClassMetadata"/>
                     <argument>%sylius.model.stockable.class%</argument>
                 </service>
             </argument>
